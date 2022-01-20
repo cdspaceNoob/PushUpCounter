@@ -3,11 +3,20 @@ from django.db import models
 
 
 class User(AbstractUser):
-    count = models.IntegerField()
-    time = models.CharField(max_length=255)
-
     def __str__(self):
-        return "user: "+self.username+" count: "+self.count+" time: "+self.time
+        return "user: "+self.username
 
     class Meta:
         ordering = ['date_joined']
+
+
+class Data(models.Model):
+    count = models.IntegerField()
+    time = models.CharField(max_length=255)
+    created = models.DateTimeField()
+
+    def __str__(self):
+        return "count: "+self.count+" time: "+self.time
+
+    class Meta:
+        ordering = ['created']
